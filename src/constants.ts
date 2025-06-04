@@ -13,10 +13,13 @@ export const DOCUMENT_REGISTRY_ADDRESS   = "0xYOUR_DOCUMENTREGISTRY_ADDRESS";
 export const FEE_SPLITTER_ADDRESS        = "0xYOUR_FEESPLITTER_ADDRESS";
 export const MARKETPLACE_ADDRESS         = "0xYOUR_MARKETPLACE_ADDRESS";
 
+export const ESCROW_MULTISIG_ADDRESS     = "0xYOUR_ESCROW_MULTISIG_ADDRESS";
+
 export const KYCRegistryABI = KYCRegistryJSON.abi;
 export const TitleRegistryABI = TitleRegistryJSON.abi;
 export const LienRegistryABI = LienRegistryJSON.abi;
 export const DocumentRegistryABI = DocumentRegistryJSON.abi;
 export const FeeSplitterABI = FeeSplitterJSON.abi;
 export const MarketplaceABI = MarketplaceJSON.abi;
+
 export const EscrowMultiSigABI = EscrowMultiSigJSON.abi;
