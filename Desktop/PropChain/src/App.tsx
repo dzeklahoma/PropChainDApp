@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { ThemeProvider } from './context/ThemeContext';
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+import AppRouter from './router/AppRouter';
+import { WalletProvider } from './context/WalletContext';
+import { PropertyProvider } from './context/PropertyContext';
+import { Toaster } from './components/ui/Toaster';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ThemeProvider>
+      <WalletProvider>
+        <PropertyProvider>
+          <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+            <Navbar />
+            <main className="flex-grow container mx-auto px-4 py-8">
+              {isLoading ? (
+                <div className="flex items-center justify-center h-[70vh]">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                </div>
+              ) : (
+                <AppRouter />
+              )}
+            </main>
+            <Footer />
+            <Toaster />
+          </div>
+        </PropertyProvider>
+      </WalletProvider>
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
