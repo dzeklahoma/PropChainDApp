@@ -1,4 +1,16 @@
-export interface Property {
+export interface PropertyMetadata {
+  title: string;
+  description: string;
+  price: number;
+  location: string;
+  area: number;
+  bedrooms: number;
+  bathrooms: number;
+  yearBuilt: number;
+  images: string[];
+}
+
+export interface Property extends PropertyMetadata {
   id: string;
   ipfsHash: string;
   status: "Pending" | "Verified" | "Rejected" | "Withdrawn";
