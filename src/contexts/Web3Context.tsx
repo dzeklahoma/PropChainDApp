@@ -30,6 +30,7 @@ export const Web3Provider: React.FC<{ children: React.ReactNode }> = ({
       alert("Please install MetaMask");
       return;
     }
+    // Use ethers v5 Web3Provider
     const web3Provider = new ethers.providers.Web3Provider(
       (window as any).ethereum
     );
@@ -46,24 +47,37 @@ export const Web3Provider: React.FC<{ children: React.ReactNode }> = ({
       const web3Provider = new ethers.providers.Web3Provider(
         (window as any).ethereum
       );
-      web3Provider.listAccounts().then((accounts) => {
+
+      // On mount, fetch connected accounts
+      web3Provider.listAccounts().then(async (accounts: string[]) => {
         if (accounts.length > 0) {
-          const web3Signer = web3Provider.getSigner();
+          const web3Signer = web3Provider.getSigner(accounts[0]);
           setProvider(web3Provider);
           setSigner(web3Signer);
           setAddress(accounts[0]);
         }
       });
-      // Listen for account changes
-      (window as any).ethereum.on("accountsChanged", (accounts: string[]) => {
+
+      // Account change handler
+      const handleAccountsChanged = async (accounts: string[]) => {
         if (accounts.length === 0) {
           setAddress(null);
           setSigner(null);
         } else {
           setAddress(accounts[0]);
-          setSigner(web3Provider.getSigner());
+          const web3Signer = web3Provider.getSigner(accounts[0]);
+          setSigner(web3Signer);
         }
-      });
+      };
+
+      (window as any).ethereum.on("accountsChanged", handleAccountsChanged);
+
+      return () => {
+        (window as any).ethereum.removeListener(
+          "accountsChanged",
+          handleAccountsChanged
+        );
+      };
     }
   }, []);
 
