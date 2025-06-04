@@ -1,11 +1,11 @@
-/*import {
+import {
   createContext,
   useContext,
   useState,
   useEffect,
   ReactNode,
 } from "react";
-
+import { mockProperties } from "../data/mockData";
 import { Property } from "../types/property";
 
 interface PropertyContextType {
@@ -75,4 +75,3 @@ export const PropertyProvider = ({ children }: PropertyProviderProps) => {
     </PropertyContext.Provider>
   );
 };
-*/
