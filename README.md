@@ -20,14 +20,7 @@ This React/TypeScript application provides a UI for interacting with your Sepoli
    - [Updating Contract Addresses](#updating-contract-addresses)  
 5. [Running the App](#running-the-app)  
 6. [How to Use the UI](#how-to-use-the-ui)  
-   1. [Connect Wallet](#connect-wallet)  
-   2. [Mint a New Deed](#mint-a-new-deed)  
-   3. [Approve / Revoke KYC](#approve--revoke-kyc)  
-   4. [List / Unlist a Deed](#list--unlist-a-deed)  
-   5. [Buy a Listed Deed](#buy-a-listed-deed)  
-   6. [Approve & Execute Escrow](#approve--execute-escrow)  
-7. [Common Issues & Debugging](#common-issues--debugging)  
-8. [License](#license)  
+7. [License](#license)  
 
 ---
 
@@ -233,3 +226,8 @@ Verify final state:
 TitleRegistry: ownerOf(0) returns Buyer (0x73005b9…).
 Seller (0x24EFD4…) balance increased by ~0.99 ETH (minus gas).
 FeeSplitter recipients each received their share of 0.01 ETH.
+
+## License
+
+This frontend and its accompanying smart-contract code are released under the MIT License.
+Feel free to fork, modify, and adapt for your own use.
