@@ -93,7 +93,7 @@ PropChainDApp/
 3. 
 ## Configuration
 
-Updating Contract Addresses
+## Updating Contract Addresses
 Open src/constants.ts and replace the placeholder strings with your actual Sepolia addresses:
 
 
@@ -149,14 +149,14 @@ Watch the terminal for any compile errors. Once it finishes, you’ll see six pa
 
 Note: Always keep MetaMask set to Sepolia Test Network.
 
-1. Connect Wallet
+## 1. Connect Wallet
 Click Connect MetaMask (upper card).
 Approve the MetaMask prompt.
 The UI will display:
 Connected: 0xYourAddress
 indicating your current wallet.
 
-2. Mint a New Deed
+## 2. Mint a New Deed
 Role: Only the Government address (used in TitleRegistry’s constructor) can mint.
 Switch MetaMask to your government address (e.g., 0x24EFD4…).
 In “Mint a New Deed”, click Mint Deed.
@@ -168,7 +168,7 @@ Once mined, the UI shows:
 ✅ Deed minted! TxHash: 0xABC123…
 Verify on Sepolia Etherscan that titleRegistry.ownerOf(0) === governmentAddress.
 
-3. Approve / Revoke KYC
+## 3. Approve / Revoke KYC
 Role: Only the KYC Admin (by default, same as the government) can grant or revoke KYC.
 Ensure MetaMask is on KYC admin (e.g., 0x24EFD4…).
 Under “Approve / Revoke KYC”, enter an address to whitelist (e.g., 0x73005b9… for Buyer).
@@ -180,7 +180,7 @@ To revoke, enter the same address and click Revoke KYC.
 Tip: In the browser console, you can verify:
 await kycRegistry.isKYCed("0x73005b9…");  // true/false
 
-4. List / Unlist a Deed
+## 4. List / Unlist a Deed
 Role: Only the deed owner (and KYCed) can list on the Marketplace.
 Prerequisite: Deed #0 must exist (from Step 2) and have no active liens.
 Switch MetaMask to Seller (0x24EFD4…).
@@ -193,7 +193,7 @@ UI shows “Listing for sale…”. After confirmation, it displays:
 To remove from sale, click Remove from Sale with Deed ID still set to 0. Confirm unlist(0).
 Once mined, Deed #0 is no longer active (active = false).
 
-5. Buy a Listed Deed
+## 5. Buy a Listed Deed
 Role: Any KYC-approved address (≠ current owner) can buy.
 Prerequisite: Deed #0 must be actively listed.
 Switch MetaMask to Buyer (0x73005b9…).
@@ -211,7 +211,7 @@ The new EscrowMultiSig address is returned by:
 const escrowAddr = await marketplace.escrowForDeed(0);
 console.log("Escrow for Deed 0: ", escrowAddr);
 
-6. Approve & Execute Escrow
+## 6. Approve & Execute Escrow
 Role: Any of the three escrow signer addresses can approve. You set threshold = 2 (2-of-3).
 Prerequisite: Buyer just called buy(0) (Step 5) → new escrow exists.
 Switch MetaMask to Escrow Signer #1 (e.g., 0x24EFD4…).
